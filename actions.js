@@ -5,7 +5,7 @@ export const STOP_EXPERIMENT = 'STOP_EXPERIMENT'
 
 export const defineGrid = (width) => {
     return {
-        type: DEFINE_GRID, 
+        type: DEFINE_GRID,
         width
     }
 }

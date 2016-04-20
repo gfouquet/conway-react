@@ -16,12 +16,10 @@ function randomCells(width) {
 function conway(state = initialState, action) {
     switch (action.type) {
         case DEFINE_GRID:
-        {
             return {
                 ...state,
                 width: action.width
             }
-        }
         case INIT_GRID:
             return {
                 ...state,
