@@ -8,9 +8,15 @@ const initialState = {
 
 function randomCells(width) {
     const randomBool = () => !!Math.round(Math.random())
-    let cells = []
-    for (let i = 0; i < width; i++)
-        cells.push(randomBool())
+    const cells = []
+    
+    for (let i = 0; i < width; i++) {
+        const row = []
+        cells.push(row)
+        for (let j = 0; j < width; j++) row.push(randomBool())
+    }
+    console.log(cells)
+    return cells
 }
 
 function conway(state = initialState, action) {

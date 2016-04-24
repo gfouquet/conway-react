@@ -1,13 +1,11 @@
 import React from 'react'
 import Form from './Form'
+import Experiment from './Experiment'
 
 const App = (props) => (
     <div>
         <Form />
-        <div>
-            <table>
-            </table>
-        </div>
+            <Experiment />
     </div>
 )
 

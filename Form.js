@@ -23,13 +23,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const Form = connect(mapStateToProps, mapDispatchToProps)(
     ({width, onInitClick, onChangeWidth}) => (
-        <div>
+        <form>
             <label htmlFor="width">Largeur</label>
-            <input type="number" name="width" id="width" placeholder="largeur" value={ width }
+            <input type="number" name="width" id="width" placeholder="largeur" min="0" max="100" value={ width }
                    onChange={ (event) => onChangeWidth(event.target.value) }/>
             <input type="button" value="Init" onClick={ onInitClick }/>
             <input type="button" value="Depart"/>
-        </div>
+        </form>
     )
 )
 
