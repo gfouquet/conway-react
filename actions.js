@@ -2,6 +2,7 @@ export const DEFINE_GRID = 'DEFINE_GRID'
 export const INIT_GRID = 'INIT_GRID'
 export const START_EXPERIMENT = 'START_EXPERIMENT'
 export const STOP_EXPERIMENT = 'STOP_EXPERIMENT'
+export const COMPUTE_NEXT_BATCH = 'COMPUTE_NEXT_BATCH'
 
 export const defineGrid = (width) => {
     return {
@@ -17,11 +18,16 @@ export const initGrid = () => {
     }
 }
 
-export const startExperiment = () => {
+export const startExperiment = (experimentId) => {
     return {
-        type: START_EXPERIMENT
+        type: START_EXPERIMENT,
+        experimentId
     }
 }
+
+export const computeNextBatch = () => ({
+    type: COMPUTE_NEXT_BATCH
+})
 
 export const stopExperiment = () => {
     return {

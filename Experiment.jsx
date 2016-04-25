@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
     return {cells: state.cells}
 }
 
-const mapDispatchToProps = (dispatch) => {
+/*const mapDispatchToProps = (dispatch) => {
     return {
         onInitClick: () => {
             dispatch(initGrid())
@@ -18,9 +18,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(startExperiment())
         }
     }
-}
+}*/
 
-const Experiment = connect(mapStateToProps, mapDispatchToProps)(
+const Experiment = connect(mapStateToProps)(
     ({cells}) => {
         const rowKey = (idx) => `r${idx}`
         const trs = cells.map((row, idx) => {

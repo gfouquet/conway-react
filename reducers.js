@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {INIT_GRID, DEFINE_GRID} from './actions'
+import {INIT_GRID, DEFINE_GRID, START_EXPERIMENT, COMPUTE_NEXT_BATCH, STOP_EXPERIMENT} from './actions'
 
 const initialState = {
     width: undefined,
@@ -30,6 +30,20 @@ function conway(state = initialState, action) {
             return {
                 ...state,
                 cells: randomCells(state.width)
+            }
+        case START_EXPERIMENT:
+            return {
+                ...state,
+                experimentId: action.experimentId
+            }
+        case COMPUTE_NEXT_BATCH:
+            console.log("compute next batch")
+            return state
+        case STOP_EXPERIMENT:
+            clearInterval(state.experimentId) // not too sure if this should be here or in computeNextBatch action trigger
+            return {
+                ...state,
+                experimentId: undefined
             }
         default:
             return state
