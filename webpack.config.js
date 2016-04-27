@@ -12,6 +12,7 @@ module.exports = {
         inline: true,
         port: 8181
     },
+    devtool: 'source-map',
     module: {
         preLoaders: [
             {

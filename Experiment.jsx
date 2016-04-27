@@ -6,20 +6,6 @@ const mapStateToProps = (state) => {
     return {cells: state.cells}
 }
 
-/*const mapDispatchToProps = (dispatch) => {
-    return {
-        onInitClick: () => {
-            dispatch(initGrid())
-        },
-        onChangeWidth: (width) => {
-            dispatch(defineGrid(width))
-        },
-        onStartClick: () => {
-            dispatch(startExperiment())
-        }
-    }
-}*/
-
 const Experiment = connect(mapStateToProps)(
     ({cells}) => {
         const rowKey = (idx) => `r${idx}`
@@ -51,7 +37,7 @@ const Row = ({row, rowKey}) => {
 
 const Cell = ({cell}) => (
     <td>
-        <input type="checkbox" checked={ cell } readOnly="true"/>
+        <input type="radio" checked={ cell } />
     </td>
 )
 

@@ -5,7 +5,7 @@ import Experiment from './Experiment'
 const App = (props) => (
     <div>
         <Form />
-            <Experiment />
+        <Experiment />
     </div>
 )
 

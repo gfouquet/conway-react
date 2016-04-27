@@ -5,7 +5,7 @@ import {createStore} from 'redux'
 import App from './App'
 import conway from './reducers'
 
-const store = createStore(conway)
+const store = createStore(conway, {width: 30, cells: []})
 
 render(
     <Provider store={store}><App /></Provider>,

@@ -8,19 +8,17 @@ const mapStateToProps = (state) => {
     return {width, running}
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onInitClick: () => dispatch(initGrid()),
-        onChangeWidth: (width) => dispatch(defineGrid(width)),
-        onStartClick: () => {
-            const experimentId = setInterval(() => dispatch(computeNextBatch()), 500) // not too sure if this should be here or in startExperiment reducer
-            return dispatch(startExperiment(experimentId))
-        },
-        onStopClick: () => {
-            return dispatch(stopExperiment())
-        }
+const mapDispatchToProps = (dispatch) => ({
+    onInitClick: () => dispatch(initGrid()),
+    onChangeWidth: (width) => dispatch(defineGrid(width)),
+    onStartClick: () => {
+        const experimentId = setInterval(() => dispatch(computeNextBatch()), 200) // not too sure if this should be here or in startExperiment reducer
+        return dispatch(startExperiment(experimentId))
+    },
+    onStopClick: () => {
+        return dispatch(stopExperiment())
     }
-}
+})
 
 const Form = connect(mapStateToProps, mapDispatchToProps)(
     ({width, running, onInitClick, onChangeWidth, onStartClick, onStopClick}) => (
