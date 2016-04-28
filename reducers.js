@@ -59,12 +59,12 @@ function cells(state) {
 
     const cellMapper = (rdx) => (cell, cdx) => {
         const livingNeighboursCount = neighboursOffsets.reduce(livingNeighboursCounter(rdx, cdx), 0)
-        return (!cell && livingNeighboursCount === 3) || (!!cell && livingNeighboursCount === 2 || livingNeighboursCount === 3)
+        return (!cell && livingNeighboursCount === 3) || (cell && (livingNeighboursCount === 2 || livingNeighboursCount === 3))
     }
 
     const livingNeighboursCounter = (rdx, cdx) => (acc, offset) => {
         const row = state[rdx + offset[0]]
-        const cell = row === undefined ? undefined : row[cdx + offset[1]]
+        const cell = row === undefined ? false : row[cdx + offset[1]]
         if (cell) acc++
         return acc
     }
