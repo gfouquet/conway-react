@@ -1,9 +1,17 @@
-import {INIT_GRID, DEFINE_GRID, START_EXPERIMENT, COMPUTE_NEXT_BATCH, STOP_EXPERIMENT} from './actions'
+import {
+    INIT_GRID,
+    DEFINE_GRID,
+    START_EXPERIMENT,
+    COMPUTE_NEXT_BATCH,
+    STOP_EXPERIMENT,
+    CHANGE_CELL_INIT_STATE
+} from './actions'
 
 const initialState = {
     width: undefined,
     experimentId: undefined,
-    cells: []
+    cells: [],
+    initialCells: []
 }
 
 function randomCells(width) {
@@ -24,17 +32,19 @@ function conway(state = initialState, action) {
         case DEFINE_GRID:
             return {
                 ...state,
-                width: action.width
+                width: action.width,
+                initialCells: resize(state.initialCells, action.width)
             }
         case INIT_GRID:
             return {
                 ...state,
-                cells: randomCells(state.width)
+                initialCells: randomCells(state.width)
             }
         case START_EXPERIMENT:
             return {
                 ...state,
-                experimentId: action.experimentId
+                experimentId: action.experimentId,
+                cells: initialCells
             }
         case STOP_EXPERIMENT:
             clearInterval(state.experimentId) // not too sure if this should be here or in computeNextBatch action trigger
@@ -46,6 +56,11 @@ function conway(state = initialState, action) {
             return {
                 ...state,
                 cells: cells(state.cells)
+            }
+        case CHANGE_CELL_INIT_STATE:
+            return {
+                ...state,
+                initialCells: initialCells(state.initialCells, action)
             }
         default:
             return state
@@ -70,6 +85,25 @@ function cells(state) {
     }
 
     return state.map(rowMapper)
+}
+
+function initialCells(initialCells, {rdx, cdx, alive}) {
+    const rowMapper = (row, dx) => (dx === rdx) ? row.map(cellMapper) : row
+    const cellMapper = (cell, dx) => (dx === cdx) ? alive : cell
+    return initialCells.map(rowMapper)
+}
+
+function resize(cells, width) {
+    const newCells = new Array(width)
+
+    for (let i = 0; i < width; i++) {
+        const newRow = new Array(width).fill(false)
+        newCells.push(newRow)
+
+        for (let j = 0; j < Math.min(cells.length, width); j++) {
+            newRow[j] = cells[i][j]
+        }
+    }
 }
 
 export default conway

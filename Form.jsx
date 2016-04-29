@@ -26,9 +26,9 @@ const Form = connect(mapStateToProps, mapDispatchToProps)(
             <label htmlFor="width">Largeur</label>
             <input type="number" name="width" id="width" placeholder="largeur" min="0" max="100" value={ width }
                    onChange={ (event) => onChangeWidth(event.target.value) }/>
-            <input type="button" value="Init" onClick={ onInitClick } disabled={ running }/>
-            <input type="button" value="Depart" onClick={ onStartClick } disabled={ running }/>
-            <input type="button" value="Arrêt" onClick={ onStopClick } disabled={ !running }/>
+            <input type="button" value="Expérience aléatoire" onClick={ onInitClick } disabled={ running }/>
+            <input type="button" value="Démarrer l'expérience" onClick={ onStartClick } disabled={ running }/>
+            <input type="button" value="Arrêter l'expérience" onClick={ onStopClick } disabled={ !running }/>
         </form>
     )
 )

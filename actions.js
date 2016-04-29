@@ -3,35 +3,34 @@ export const INIT_GRID = 'INIT_GRID'
 export const START_EXPERIMENT = 'START_EXPERIMENT'
 export const STOP_EXPERIMENT = 'STOP_EXPERIMENT'
 export const COMPUTE_NEXT_BATCH = 'COMPUTE_NEXT_BATCH'
+export const CHANGE_CELL_INIT_STATE = 'CHANGE_CELL_INIT_STATE'
 
-export const defineGrid = (width) => {
-    return {
-        type: DEFINE_GRID,
-        width
-    }
-}
+export const defineGrid = (width) => ({
+    type: DEFINE_GRID,
+    width
+})
 
-export const initGrid = () => {
-    console.log('initGRid')
-    return {
-        type: INIT_GRID
-    }
-}
+export const initGrid = () => ({
+    type: INIT_GRID
+})
 
-export const startExperiment = (experimentId) => {
-    return {
-        type: START_EXPERIMENT,
-        experimentId
-    }
-}
+export const changeCellInitState = ({rdx, cdx, alive}) => ({
+    type: CHANGE_CELL_INIT_STATE,
+    rdx,
+    cdx,
+    alive
+})
+
+export const startExperiment = (experimentId) => ({
+    type: START_EXPERIMENT,
+    experimentId
+})
 
 export const computeNextBatch = () => ({
     type: COMPUTE_NEXT_BATCH
 })
 
-export const stopExperiment = () => {
-    return {
-        type: STOP_EXPERIMENT
-    }
-}
+export const stopExperiment = () => ({
+    type: STOP_EXPERIMENT
+})
 

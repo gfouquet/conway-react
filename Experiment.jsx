@@ -1,6 +1,6 @@
 import React from 'react'
+import {PropTypes} from 'react'
 import {connect}  from 'react-redux'
-import {initGrid, defineGrid, startExperiment} from './actions'
 
 const mapStateToProps = (state) => {
     return {cells: state.cells}
@@ -17,12 +17,16 @@ const Experiment = connect(mapStateToProps)(
         return (
             <table>
                 <tbody>
-                    { trs }
+                { trs }
                 </tbody>
             </table>
         )
     }
 )
+
+Experiment.propTypes = {
+    cells: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.bool.isRequired)).isRequired
+}
 
 const Row = ({row, rowKey}) => {
     const cellKey = (idx) => `${rowKey}c${idx}`
@@ -35,10 +39,18 @@ const Row = ({row, rowKey}) => {
     )
 }
 
+Row.propTypes = {
+    row: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
+    rowKey: PropTypes.string.isRequired
+}
+
 const Cell = ({cell}) => (
-    <td>
-        <input type="radio" checked={ cell } />
+    <td className={cell}>
     </td>
 )
+
+Cell.propTypes = {
+    cell: PropTypes.bool.isRequired
+}
 
 export default Experiment
