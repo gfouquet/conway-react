@@ -8,10 +8,10 @@ import {
 } from './actions'
 
 const initialState = {
-    width: undefined,
+    width: 30,
     experimentId: undefined,
     cells: [],
-    initialCells: []
+    initialCells: resize([], 30)
 }
 
 function randomCells(width) {
@@ -44,7 +44,7 @@ function conway(state = initialState, action) {
             return {
                 ...state,
                 experimentId: action.experimentId,
-                cells: initialCells
+                cells: state.initialCells
             }
         case STOP_EXPERIMENT:
             clearInterval(state.experimentId) // not too sure if this should be here or in computeNextBatch action trigger
@@ -87,23 +87,27 @@ function cells(state) {
     return state.map(rowMapper)
 }
 
-function initialCells(initialCells, {rdx, cdx, alive}) {
+function initialCells(cells, {rdx, cdx, alive}) {
     const rowMapper = (row, dx) => (dx === rdx) ? row.map(cellMapper) : row
     const cellMapper = (cell, dx) => (dx === cdx) ? alive : cell
-    return initialCells.map(rowMapper)
+    return cells.map(rowMapper)
 }
 
 function resize(cells, width) {
-    const newCells = new Array(width)
+    const newCells = []
 
     for (let i = 0; i < width; i++) {
         const newRow = new Array(width).fill(false)
         newCells.push(newRow)
 
+        if (i>= cells.length) continue
+
         for (let j = 0; j < Math.min(cells.length, width); j++) {
             newRow[j] = cells[i][j]
         }
     }
+
+    return newCells
 }
 
 export default conway

@@ -15,7 +15,7 @@ const Experiment = connect(mapStateToProps)(
         })
 
         return (
-            <table>
+            <table id="exp">
                 <tbody>
                 { trs }
                 </tbody>
