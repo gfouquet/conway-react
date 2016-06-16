@@ -19,9 +19,7 @@ const InitTable = Table(Cell)
 
 const mapStateToProps = (state) => ({running: state.experimentId !== undefined, cells: state.initialCells})
 
-const mapDispatchToProps = (dispatch) => ({
-    onChangeCell: ({rdx, cdx, alive}) => dispatch(changeCellInitState({rdx, cdx, alive}))
-})
+const mapDispatchToProps = { onChangeCell: changeCellInitState } // shortcut for a mapper returning { foo(args) { return dispatch(bar(args)) }
 
 const InitialState = connect(mapStateToProps, mapDispatchToProps)(({running, cells, onChangeCell}) => {
     if (running) {
