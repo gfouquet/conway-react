@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect}  from 'react-redux'
 import {initGrid, defineGrid, startExperiment, computeNextBatch, stopExperiment} from './actions'
+import {isRunning} from 'reducers'
 
 const mapStateToProps = (state) => {
     const width = state.width ? state.width : ""
-    const running = state.experimentId !== undefined
+    const running = isRunning(state)
     return {width, running}
 }
 

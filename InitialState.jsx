@@ -3,6 +3,7 @@ import {PropTypes} from 'react'
 import {connect}  from 'react-redux'
 import {changeCellInitState} from './actions'
 import Table from './Table'
+import {isRunning} from 'reducers'
 
 const Cell = ({rdx, cdx, alive}) => {
     const val = `${rdx}-${cdx}`
@@ -17,7 +18,7 @@ Cell.propTypes = {
 
 const InitTable = Table(Cell)
 
-const mapStateToProps = (state) => ({running: state.experimentId !== undefined, cells: state.initialCells})
+const mapStateToProps = (state) => ({running: isRunning(state), cells: state.initialCells})
 
 const mapDispatchToProps = { onChangeCell: changeCellInitState } // shortcut for a mapper returning { foo(args) { return dispatch(bar(args)) }
 
