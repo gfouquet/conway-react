@@ -1,11 +1,10 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import App from './App'
 import conway from './reducers'
 
-const store = createStore(conway)
 
 const logger = (store) => (next) => (action) => {
     console.group(`Dispatching action ${action.type}`)
@@ -16,7 +15,7 @@ const logger = (store) => (next) => (action) => {
     console.groupEnd()
 }
 
-store.dispatch = logger(store)(store.dispatch)
+const store = createStore(conway, applyMiddleware(logger))
 
 render(
     <Provider store={store}><App /></Provider>,
