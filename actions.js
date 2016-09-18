@@ -21,10 +21,13 @@ export const changeCellInitState = ({rdx, cdx, alive}) => ({
     alive
 })
 
-export const startExperiment = (experimentId) => ({
-    type: START_EXPERIMENT,
-    experimentId
-})
+export const startExperiment = () => (dispatch) => {
+    const experimentId = setInterval(() => dispatch(computeNextBatch()), 200)
+    dispatch({
+        type: START_EXPERIMENT,
+            experimentId
+    })
+}
 
 export const computeNextBatch = () => ({
     type: COMPUTE_NEXT_BATCH

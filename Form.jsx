@@ -13,8 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
     onInitClick() { return dispatch(initGrid()) },
     onChangeWidth(width) { return dispatch(defineGrid(parseInt(width))) },
     onStartClick() {
-        const experimentId = setInterval(() => dispatch(computeNextBatch()), 200) // not too sure if this should be here or in startExperiment reducer
-        return dispatch(startExperiment(experimentId))
+        return dispatch(startExperiment())
     },
     onStopClick() { return dispatch(stopExperiment()) }
 })

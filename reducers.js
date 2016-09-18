@@ -12,10 +12,10 @@ import experimentId, * as fromExpID from './reducers/experiment-id'
 import {combineReducers} from 'redux'
 
 const initialState = {
-    width: 30,
+    width: 6,
     experimentId: 0,
     cells: [],
-    initialCells: resizeCells([], 30)
+    initialCells: resizeCells([], 6)
 }
 
 function conway(state = initialState, action) {
